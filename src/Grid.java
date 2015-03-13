@@ -11,6 +11,7 @@ public class Grid {
 		for(int x = 0; x < chosenSize; x++){
 			for(int y = 0; y < chosenSize; y++){
 				this.gameGrid[x][y] = new Square(x, y);
+				this.gameGrid[x][y].setGameGrid(this);
 			}
 		}
 	}
@@ -18,11 +19,11 @@ public class Grid {
 	public void whatsAt(int x, int y){// could change to 'public Ship whatsAt' and return target.getCurrentShip()
 		Square target;
 		target = this.gameGrid[x][y];
-		System.out.println(target.getCurrentShip());
+		System.out.println(target.getShip());
 	}
 	
 	public void put(int x, int y, Ship ship){
-		this.gameGrid[x][y].setCurrentShip(ship);
+		this.gameGrid[x][y].setShip(ship);
 	}
 	
 	public void clear(int x, int y){
@@ -33,8 +34,8 @@ public class Grid {
 		String output = "";
 		for(int y = 0; y < this.size; y++){
 			for(int x = 0; x < this.size; x++){
-				if(this.gameGrid[x][y].getCurrentShip() != null){
-					output = output + this.gameGrid[x][y].getCurrentShip().getName() + " ";
+				if(this.gameGrid[x][y].getShip() != null){
+					output = output + this.gameGrid[x][y].getShip().getName() + " ";
 				} else {
 					output = output + this.gameGrid[x][y].getCoords() + " ";
 				}

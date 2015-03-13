@@ -1,8 +1,6 @@
 
 public class Ship {
-	//private Square position;
-	private int xPos;
-	private int yPos;
+	private Square position;
 	private String name;
 	private Grid gameGrid;
 	
@@ -12,32 +10,31 @@ public class Ship {
 	}
 	
 	public void move(Movement move){
-		int newX = this.xPos + move.xChange();
-		int newY = this.yPos + move.yChange();
-		this.gameGrid.clear(xPos, xPos);
+		Square oldPosition = leaveCurrentPos();
+		int newX = oldPosition.getX() + move.xChange();
+		int newY = oldPosition.getY() + move.yChange();
 		this.gameGrid.put(newX, newY, this);
 	}
+	
+	public Square leaveCurrentPos(){
+		Square oldPosition = this.position;
+		this.position = null;
+		oldPosition.clear();
+		return oldPosition;
+	}
 
-	public String printCoords(){
+	public void printCoords(){
 		String output;
-		output = this.name+"'s coords: ("+this.xPos+","+this.yPos+")";
-		return output;
+		output = this.name+"'s coords: ("+this.position.getX()+","+this.position.getY()+")";
+		System.out.println(output);
 	}
 
-	public int getxPos() {
-		return this.xPos;
+	public Square getPosition() {
+		return position;
 	}
 
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-
-	public int getyPos() {
-		return yPos;
-	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
+	public void setPosition(Square position) {
+		this.position = position;
 	}
 
 	public String getName() {

@@ -9,21 +9,9 @@ public class Demo {
 		g.print();
 		for(Movement move : Movement.values()){
 			s1.move(move);
-			//g.print();
+			s1.printCoords();
 		}
 		g.print();
-		g.whatsAt(4, 2);
-		g.whatsAt(6, 3);
-		
-		/*g.clear(3, 3);
-		g.print();
-		System.out.println(s1.printCoords());
-		g.put(5, 5, s1);
-		g.print();
-		g.clear(5, 5);
-		g.put(2, 2, s1);
-		System.out.println(s1.printCoords());
-		g.print();*/
 		
 	}
 

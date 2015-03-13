@@ -3,7 +3,7 @@ public class Square {
 	private int x;
 	private int y;
 	private Grid gameGrid;
-	private Ship currentShip;
+	private Ship ship;
 	
 	public Square(){}
 	
@@ -13,7 +13,7 @@ public class Square {
 	}
 	
 	public void printCoords(){
-		System.out.println("("+getX()+","+getY()+")");
+		System.out.println(getCoords());
 	}
 	
 	public String getCoords(){
@@ -39,20 +39,17 @@ public class Square {
 		this.gameGrid = gameGrid;
 	}
 
-	public Ship getCurrentShip() {
-		return this.currentShip;
+	public Ship getShip() {
+		return this.ship;
 	}
 
-	public void setCurrentShip(Ship currentShip) {
-		this.currentShip = currentShip;
-		this.currentShip.setxPos(this.x);
-		this.currentShip.setyPos(this.y);
+	public void setShip(Ship newShip) {
+		this.ship = newShip;
+		this.ship.setPosition(this);
 	}
 	
 	public void clear() {
-		Object o = new Object();
-		o = null;
-		setCurrentShip((Ship) o);
+		this.ship = null;
 	}
 	
 	
