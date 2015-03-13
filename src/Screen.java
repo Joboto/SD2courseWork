@@ -28,16 +28,21 @@ public class Screen extends JFrame {
 	}
 
 	public Screen() {
-		grid.initializeGrid(4);
+		int size = 4;
+		grid.initializeGrid(size);
+		ScreenSquare square[][] = new ScreenSquare[size][size];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(4, 4, 0, 0));
-		
-		JButton button = new JButton("");
-		contentPane.add(button);
+		for(int x = 0; x < size; x++){
+			for(int y = 0; y < size; y++){
+				square[x][y] = new ScreenSquare();
+				contentPane.add(square[x][y]);
+			}
+		}
 		
 	}
 

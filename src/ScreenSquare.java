@@ -13,6 +13,7 @@ public class ScreenSquare extends JButton implements ActionListener {
 	 */
 	
 	public ScreenSquare(){
+		
 		X = new ImageIcon(this.getClass().getResource("X.jpg"));
 		O = new ImageIcon(this.getClass().getResource("O.jpg"));
 		this.addActionListener(this);
