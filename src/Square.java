@@ -20,6 +20,14 @@ public class Square {
 		return "("+getX()+","+getY()+")";
 	}
 	
+	public String description(){
+		if(this.ship != null){
+			return this.ship.getName();
+		} else {
+			return null;
+		}
+	}
+	
 	public int getX() {
 		return this.x;
 	}

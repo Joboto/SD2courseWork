@@ -16,10 +16,8 @@ public class Grid {
 		}
 	}
 	
-	public void whatsAt(int x, int y){// could change to 'public Ship whatsAt' and return target.getCurrentShip()
-		Square target;
-		target = this.gameGrid[x][y];
-		System.out.println(target.getShip());
+	public Square whatsAt(int x, int y){// could change to 'public Ship whatsAt' and return target.getCurrentShip()
+		return this.gameGrid[x][y];
 	}
 	
 	public void put(int x, int y, Ship ship){
