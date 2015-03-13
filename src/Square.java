@@ -45,6 +45,14 @@ public class Square {
 
 	public void setCurrentShip(Ship currentShip) {
 		this.currentShip = currentShip;
+		this.currentShip.setxPos(this.x);
+		this.currentShip.setyPos(this.y);
+	}
+	
+	public void clear() {
+		Object o = new Object();
+		o = null;
+		setCurrentShip((Ship) o);
 	}
 	
 	

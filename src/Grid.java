@@ -15,13 +15,29 @@ public class Grid {
 		}
 	}
 	
+	public void whatsAt(int x, int y){// could change to 'public Ship whatsAt' and return target.getCurrentShip()
+		Square target;
+		target = this.gameGrid[x][y];
+		System.out.println(target.getCurrentShip());
+	}
 	
+	public void put(int x, int y, Ship ship){
+		this.gameGrid[x][y].setCurrentShip(ship);
+	}
+	
+	public void clear(int x, int y){
+		this.gameGrid[x][y].clear();
+	}
 	
 	public void print(){
 		String output = "";
 		for(int y = 0; y < this.size; y++){
 			for(int x = 0; x < this.size; x++){
-				output = output + this.gameGrid[x][y].getCoords() + " ";
+				if(this.gameGrid[x][y].getCurrentShip() != null){
+					output = output + this.gameGrid[x][y].getCurrentShip().getName() + " ";
+				} else {
+					output = output + this.gameGrid[x][y].getCoords() + " ";
+				}
 			}
 			output = output + "\n";
 		}
