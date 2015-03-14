@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +19,7 @@ public class Screen extends JFrame {
 	private JPanel gridPane;
 	private JPanel buttonsPane;
 	private ScreenSquare squares[][];
-	private JButton actionButton;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,27 +71,29 @@ public class Screen extends JFrame {
 	private JPanel getButtonPane(){
 		if(buttonsPane == null){
 			buttonsPane = new JPanel();
-			buttonsPane.add(getActionButton(), BorderLayout.CENTER);
+			buttonsPane.setLayout(new GridLayout(3, 3));
+			for(Movement move : Movement.values()){
+				buttonsPane.add(getMoveButton(move));
+			}
+			
 		}
 		return buttonsPane;
 	}
 	
-	private JButton getActionButton() {
-		if (actionButton == null) {
-			actionButton = new JButton("Northwards");
-			actionButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					ship.move(Movement.N);
-					for(int y = 0; y < size; y++){
-						for(int x = 0; x < size; x++){
-							squares[x][y].update();
-						}
+	private JButton getMoveButton(final Movement move) {
+		JButton button = new JButton(move.name());
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ship.move(move);
+				for(int y = 0; y < size; y++){
+					for(int x = 0; x < size; x++){
+						squares[x][y].update();
 					}
 				}
-			});
-			actionButton.setSize(10, 10);
-		}//end if
-		return actionButton;
+			}
+		});
+		button.setSize(10, 10);
+		return button;
 	}
-
+	
 }
