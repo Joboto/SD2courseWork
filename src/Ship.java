@@ -23,7 +23,7 @@ public class Ship {
 	public Square leaveCurrentPos(){
 		Square oldPosition = this.position;
 		this.position = null;
-		oldPosition.clear();
+		oldPosition.removeShip(this);
 		return oldPosition;
 	}
 

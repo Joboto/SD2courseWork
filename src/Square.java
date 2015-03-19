@@ -1,9 +1,11 @@
+import java.util.HashSet;
+
 
 public class Square {
 	private int x;
 	private int y;
 	private Grid gameGrid;
-	private Ship ship;
+	private HashSet<Ship> ships = new HashSet<Ship>();
 	
 	public Square(){}
 	
@@ -21,10 +23,14 @@ public class Square {
 	}
 	
 	public String description(){
-		if(this.ship != null){
-			return this.ship.getName();
-		} else {
+		if(this.ships.isEmpty() == true){
 			return null;
+		} else {
+			String output = "";
+			for(Ship tempShip : this.ships) {
+				output = output +"\n" +tempShip.getName();
+			}
+			return output;
 		}
 	}
 	
@@ -47,18 +53,22 @@ public class Square {
 		this.gameGrid = gameGrid;
 	}
 
-	public Ship getShip() {
-		return this.ship;
-	}
-
-	public void setShip(Ship newShip) {
-		this.ship = newShip;
-		this.ship.setPosition(this);
+	public void addShip(Ship newShip) {
+		newShip.setPosition(this);
+		this.ships.add(newShip);
 	}
 	
-	public void clear() {
-		this.ship = null;
+	public HashSet<Ship> getShips() {
+		return ships;
 	}
+
+	public void removeShip(Ship oldShip) {
+		this.ships.remove(oldShip);
+	}
+	
+	/*public void clear() {
+		this.ship = null;
+	}*/
 	
 	
 }

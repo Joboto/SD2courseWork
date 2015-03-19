@@ -12,9 +12,7 @@ import javax.swing.JButton;
 
 
 public class Screen extends JFrame {
-	private int size = 4;
-	private Grid grid = new Grid();
-	private Ship ship;
+	private Game newGame;
 	private JSplitPane splitPane;
 	private JPanel gridPane;
 	private JPanel buttonsPane;
@@ -38,11 +36,9 @@ public class Screen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
-		grid.initializeGrid(size);
-		ship = new Ship(grid, "Dave");
-		grid.put(0, 0, ship);
+		newGame = new Game();
 		
-		splitPane.setLeftComponent(getGridPane(size));
+		splitPane.setLeftComponent(getGridPane(newGame.getSize()));
 		splitPane.setRightComponent(getButtonPane());
 		
 		JPanel wrapper = new JPanel();
@@ -60,7 +56,7 @@ public class Screen extends JFrame {
 			squares = new ScreenSquare[size][size];
 			for(int y = 0; y < size; y++){
 				for(int x = 0; x < size; x++){
-					squares[x][y] = new ScreenSquare(x, y, grid);
+					squares[x][y] = new ScreenSquare(x, y, newGame.getTheGrid());
 					gridPane.add(squares[x][y]);
 				}
 			}//end for, creating grid
@@ -84,15 +80,15 @@ public class Screen extends JFrame {
 		JButton button = new JButton(move.name());
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ship.move(move);
-				for(int y = 0; y < size; y++){
-					for(int x = 0; x < size; x++){
+				newGame.getPlayer().move(move);
+				for(int y = 0; y < newGame.getSize(); y++){
+					for(int x = 0; x < newGame.getSize(); x++){
 						squares[x][y].update();
 					}
 				}
 			}
 		});
-		button.setSize(10, 10);
+		//button.setSize(10, 10);
 		return button;
 	}
 	
