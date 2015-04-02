@@ -7,7 +7,7 @@ public class Game {
 	private int size;
 	private MasterShip player;
 	//let's instantiate an enemy ship for the time being and try to move him randomly
-	private Random random = new Random();
+	private final Random random = new Random();
 	private HashSet<EnemyShip> allEnemys = new HashSet<EnemyShip>();
 	
 	public Game(){
@@ -16,8 +16,8 @@ public class Game {
 		this.theGrid.initializeGrid(this.size);
 		setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
 		this.theGrid.put(0, 0, getPlayer());
-		newEnemy("Bob");
-		newEnemy("Al");
+		//newEnemy("Bob");
+		//newEnemy("Al");
 	}
 	
 	public void moveEnemys(){
@@ -35,6 +35,14 @@ public class Game {
 		EnemyShip grrr = new EnemyShip(this.theGrid, name);
 		this.allEnemys.add(grrr);
 		this.theGrid.put(0, 0, grrr);
+	}
+	
+	public void probNewEnemy(){
+		int chance = random.nextInt(3);
+		switch(chance){
+		case 0: newEnemy("Dave");
+		break;
+		}
 	}
 	
 	public Grid getTheGrid() {

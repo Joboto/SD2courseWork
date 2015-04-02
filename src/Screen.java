@@ -87,6 +87,8 @@ public class Screen extends JFrame {
 				but not nessecarily*/ 
 				//lets include a random movement for the enemy, Bob
 				newGame.moveEnemys();
+				//maybe add a new enemy (1 in 3 chance)
+				newGame.probNewEnemy();
 				for(int y = 0; y < newGame.getSize(); y++){
 					for(int x = 0; x < newGame.getSize(); x++){
 						squares[x][y].update();
