@@ -4,8 +4,9 @@ import java.util.ArrayList;
 public class MasterShip extends Ship implements Observable {
 	public static MasterShip uniqueInstance;
 	public int score;
-	public ArrayList<Ship> watchers = new ArrayList<Ship>();
+	public ArrayList<EnemyShip> watchers = new ArrayList<EnemyShip>();
 
+	//implementing singleton design pattern
 	private MasterShip(Grid grid, String name) {
 		super(grid, name);
 		setScore(0);
@@ -19,21 +20,20 @@ public class MasterShip extends Ship implements Observable {
 	}
 
 	@Override
-	public void addObserver(Ship s) {
-		// TODO Auto-generated method stub
-
+	public void addObserver(EnemyShip s) {
+		this.watchers.add(s);
 	}
 
 	@Override
-	public void removeObserver(Ship s) {
-		// TODO Auto-generated method stub
-
+	public void removeObserver(EnemyShip s) {
+		this.watchers.remove(s);
 	}
 
 	@Override
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
-
+		for(EnemyShip s : this.watchers){
+			s.update(this.getPosition());
+		}
 	}
 
 	public int getScore() {
