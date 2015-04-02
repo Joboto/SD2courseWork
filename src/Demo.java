@@ -1,8 +1,10 @@
+import java.util.Random;
+
 
 public class Demo {
 
 	public static void main(String[] args) {
-		Grid g = new Grid();
+		/*Grid g = new Grid();
 		g.initializeGrid(4);
 		
 		Ship dave = new Ship(g, "Dave");
@@ -15,8 +17,11 @@ public class Demo {
 		
 		g.put(1, 1, dave);
 		
-		g.print();
+		g.print();*/
 		
+		Random random = new Random();
+		Movement randomMove = Movement.values()[random.nextInt(Movement.values().length)];
+		System.out.println(randomMove);
 		
 	}
 
