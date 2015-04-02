@@ -11,13 +11,10 @@ public class Ship {
 	
 	public void move(Movement move){
 		Square oldPosition = leaveCurrentPos();
-		try {
-			int newX = oldPosition.getX() + move.xChange();
-			int newY = oldPosition.getY() + move.yChange();
-			this.gameGrid.put(newX, newY, this);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			this.gameGrid.put(oldPosition.getX(), oldPosition.getY(), this);
-		}
+		int newX = oldPosition.getX() + move.xChange();
+		int newY = oldPosition.getY() + move.yChange();
+		this.gameGrid.put(newX, newY, this);
+		
 	}
 	
 	public Square leaveCurrentPos(){

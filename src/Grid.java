@@ -21,7 +21,19 @@ public class Grid {
 	}
 	
 	public void put(int x, int y, Ship ship){
+		x = keepInBounds(x);
+		y = keepInBounds(y);
 		this.gameGrid[x][y].addShip(ship);
+	}
+	
+	public int keepInBounds(int coord){
+		if(coord < 0){
+			coord = 0;
+		}
+		if(coord >= this.size){
+			coord = this.size - 1;
+		}
+		return coord;
 	}
 	
 	public void clear(int x, int y){
