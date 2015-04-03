@@ -81,14 +81,11 @@ public class Screen extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//here's the action; move the player
-				newGame.getPlayer().move(move);
+				newGame.go(move);
 				/*after the movement, we then refresh. When movement is done at time intervals, 
 				this for loop will will have to be done elsewhere, in the game...
 				but not nessecarily*/ 
 				//lets include a random movement for the enemy, Bob
-				newGame.moveEnemys();
-				//maybe add a new enemy (1 in 3 chance)
-				newGame.probNewEnemy();
 				for(int y = 0; y < newGame.getSize(); y++){
 					for(int x = 0; x < newGame.getSize(); x++){
 						squares[x][y].update();
