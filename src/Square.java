@@ -1,6 +1,5 @@
 import java.util.HashSet;
 
-
 public class Square {
 	private int x;
 	private int y;
@@ -65,10 +64,6 @@ public class Square {
 	public void removeShip(Ship oldShip) {
 		this.ships.remove(oldShip);
 	}
-	
-	/*public void clear() {
-		this.ship = null;
-	}*/
-	
+
 	
 }
