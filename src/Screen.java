@@ -1,9 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +21,7 @@ public class Screen extends JFrame {
 	private JSplitPane splitPane;
 	private JPanel gridPane;
 	private JPanel buttonsPane;
+	private JLabel bg = new JLabel(new ImageIcon("bgspace.png"));
 	private ScreenSquare squares[][];
 	
 	public static void main(String[] args) {
@@ -34,12 +40,13 @@ public class Screen extends JFrame {
 	public Screen() {
 		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 300, 400);
 		
 		newGame = new Game();
 		
 		splitPane.setLeftComponent(getGridPane(newGame.getSize()));
 		splitPane.setRightComponent(getButtonPane());
+		splitPane.setDividerLocation(250);
 		
 		JPanel wrapper = new JPanel();
 		wrapper.setLayout(new BorderLayout());

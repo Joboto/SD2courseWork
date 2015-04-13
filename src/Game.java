@@ -13,7 +13,7 @@ public class Game {
 		setSize(4);
 		setTheGrid(new Grid());
 		this.theGrid.initializeGrid(this.size);
-		setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
+		setPlayer(MasterShip.getInstance(this.theGrid, "master"));
 		this.theGrid.put(0, 0, getPlayer());
 		//newEnemy("Bob");
 		//newEnemy("Al");
@@ -65,7 +65,7 @@ public class Game {
 	public void probNewEnemy(){
 		int chance = random.nextInt(3);
 		switch(chance){
-		case 0: newEnemy("Dave");
+		case 0: newEnemy("enemy1");
 		break;
 		}
 	}

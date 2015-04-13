@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class ScreenSquare extends JLabel {
 	int x, y;
 	Grid grid;
-	ImageIcon image;
+	ImageIcon bg, bStar, master;
 	
 	public ScreenSquare(int gridX, int gridY, Grid gameGrid){
 		
@@ -20,17 +20,20 @@ public class ScreenSquare extends JLabel {
 		x = gridX;
 		y = gridY;
 		grid = gameGrid;
-		image = new ImageIcon(this.getClass().getResource("bgSpc.PNG"));
+		bg = new ImageIcon(this.getClass().getResource("bgSpc.PNG"));
+		bStar = new ImageIcon(this.getClass().getResource("enemy1.PNG"));
+		master = new ImageIcon(this.getClass().getResource("master.PNG"));
 		update();
 		}
 	
 	public void update(){
 		String description = grid.whatsAt(x, y).description();
-		/*if(description != null){
-			this.setText(description);
+		//this.setText(description);
+		if(description != null){
+			this.setIcon(master);
 		} else {
-			this.setIcon(image);
-		}*/
-		this.setIcon(image);
+			this.setIcon(bg);
+		}
+		//this.setIcon(image);
 	}
 }

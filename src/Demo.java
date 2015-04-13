@@ -4,24 +4,13 @@ import java.util.Random;
 public class Demo {
 
 	public static void main(String[] args) {
-		/*Grid g = new Grid();
-		g.initializeGrid(4);
+		Grid grid = new Grid();
+		EnemyShip enemy = new EnemyShip(grid, "foo");
+		MasterShip masterShip = MasterShip.getInstance(grid, "bar");
 		
-		Ship dave = new Ship(g, "Dave");
+		System.out.println(masterShip.getClass());
+		System.out.println(enemy.getClass());
 		
-		Square box = new Square();
-		
-		box.setX(1);
-		box.setY(1);
-		box.addShip(dave);
-		
-		g.put(1, 1, dave);
-		
-		g.print();*/
-		
-		Random random = new Random();
-		Movement randomMove = Movement.values()[random.nextInt(Movement.values().length)];
-		System.out.println(randomMove);
 		
 	}
 
