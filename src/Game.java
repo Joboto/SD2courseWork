@@ -65,7 +65,7 @@ public class Game {
 	public void probNewEnemy(){
 		int chance = random.nextInt(3);
 		switch(chance){
-		case 0: newEnemy("enemy1");
+		case 0: newEnemy("battleStar");
 		break;
 		}
 	}

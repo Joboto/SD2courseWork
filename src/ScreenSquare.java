@@ -21,8 +21,6 @@ public class ScreenSquare extends JLabel {
 		y = gridY;
 		grid = gameGrid;
 		bg = new ImageIcon(this.getClass().getResource("bgSpc.PNG"));
-		bStar = new ImageIcon(this.getClass().getResource("enemy1.PNG"));
-		master = new ImageIcon(this.getClass().getResource("master.PNG"));
 		update();
 		}
 	
@@ -30,7 +28,13 @@ public class ScreenSquare extends JLabel {
 		String description = grid.whatsAt(x, y).description();
 		//this.setText(description);
 		if(description != null){
-			this.setIcon(master);
+			String path = description+".PNG";
+			try {
+				this.setIcon(new ImageIcon(this.getClass().getResource(path.trim())));
+			} catch (NullPointerException e){
+				System.out.println(e.toString());
+			}
+			
 		} else {
 			this.setIcon(bg);
 		}
