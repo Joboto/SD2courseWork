@@ -11,13 +11,11 @@ public class Game {
 	private HashSet<EnemyShip> allEnemys = new HashSet<EnemyShip>();
 	
 	public Game(){
-		setSize(4);
+		setSize(6);
 		setTheGrid(new Grid());
 		this.theGrid.initializeGrid(this.size);
 		setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
 		this.theGrid.put(0, 0, getPlayer());
-		//newEnemy("Bob");
-		//newEnemy("Al");
 	}
 	
 	public void go(Movement plrInput){
@@ -36,7 +34,8 @@ public class Game {
 		case 2: killEnemy();
 			System.out.println("Dave dead.");
 			break;
-		case 3: //game over
+		default: //ie 3 or more. game over
+			setNews("GAME OVER!");
 			System.out.println("GAME OVER!");
 			break;
 		}

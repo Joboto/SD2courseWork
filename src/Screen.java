@@ -49,7 +49,7 @@ public class Screen extends JFrame {
 		newGame = new Game();
 		int frameSize = newGame.getSize() * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, frameSize, frameSize + 100);
+		setBounds(50, 50, frameSize, frameSize + 50);
 		
 		splitPane = getSplitPane();
 		setContentPane(splitPane);
