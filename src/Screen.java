@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
@@ -23,7 +24,6 @@ public class Screen extends JFrame {
 	private JSplitPane splitPane;
 	private JPanel gridPane;
 	private JPanel buttonsPane;
-	private JLabel bg;
 	private ScreenSquare squares[][];
 	
 	public static void main(String[] args) {
@@ -41,8 +41,6 @@ public class Screen extends JFrame {
 
 	public Screen() {
 		newGame = new Game();
-		layeredPane = new JLayeredPane();
-		bg = new JLabel(new ImageIcon("bgspace.png"));
 		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 400);
@@ -50,26 +48,25 @@ public class Screen extends JFrame {
 		splitPane.setLeftComponent(getGridPane(newGame.getSize()));
 		splitPane.setRightComponent(getButtonPane());
 		splitPane.setDividerLocation(250);
+		splitPane.setBackground(Color.BLACK);
 		
-		layeredPane.add(bg, 0);
-		layeredPane.add(splitPane, 1);
-		
-		JPanel wrapper = new JPanel();
-		wrapper.setLayout(new BorderLayout());
 		setContentPane(splitPane);
+		setBackground(new Color(0, 0, 0));
 		
 	}//end Screen
-	
+		
 	private JPanel getGridPane(int size) {
 		if(gridPane == null){
 			gridPane = new JPanel();
 			gridPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			gridPane.setSize(400, 400);
 			gridPane.setLayout(new GridLayout(size, size, 0, 0));
+			gridPane.setOpaque(false);
 			squares = new ScreenSquare[size][size];
 			for(int y = 0; y < size; y++){
 				for(int x = 0; x < size; x++){
 					squares[x][y] = new ScreenSquare(x, y, newGame.getTheGrid());
+					squares[x][y].setOpaque(false);
 					gridPane.add(squares[x][y]);
 				}
 			}//end for, creating grid

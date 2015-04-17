@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class ScreenSquare extends JLabel {
 	int x, y;
 	Grid grid;
-	ImageIcon bg, bStar, master;
+	ImageIcon bg;
 	
 	public ScreenSquare(int gridX, int gridY, Grid gameGrid){
 		
