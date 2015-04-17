@@ -4,9 +4,8 @@ public class Ship {
 	private String name;
 	private Grid gameGrid;
 	
-	public Ship(Grid grid, String name){
+	public Ship(Grid grid){
 		setGameGrid(grid);
-		setName(name);
 	}
 	
 	public void move(Movement move){
@@ -36,6 +35,10 @@ public class Ship {
 
 	public void setPosition(Square position) {
 		this.position = position;
+	}
+	
+	public String imagePath(){
+		return this.getClass().getName().trim()+".PNG";
 	}
 
 	public String getName() {

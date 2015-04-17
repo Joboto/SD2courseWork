@@ -25,18 +25,16 @@ public class ScreenSquare extends JLabel {
 		}
 	
 	public void update(){
-		String description = grid.whatsAt(x, y).description();
-		//this.setText(description);
-		if(description != null){
-			String path = description+".PNG";
+		Square position = grid.whatsAt(x, y);
+		if(position.getShips().isEmpty()){
+			this.setIcon(bg);
+		} else {
 			try {
-				this.setIcon(new ImageIcon(this.getClass().getResource(path.trim())));
+				String path = position.getShips().iterator().next().imagePath();
+				this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 			} catch (NullPointerException e){
 				System.out.println(e.toString());
 			}
-			
-		} else {
-			this.setIcon(bg);
 		}
 		//this.setIcon(image);
 	}

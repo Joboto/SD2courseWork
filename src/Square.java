@@ -22,7 +22,7 @@ public class Square {
 	}
 	
 	public String description(){
-		if(this.ships.isEmpty() == true){
+		if(this.ships.isEmpty()){
 			return null;
 		} else {
 			String output = "";

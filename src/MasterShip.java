@@ -3,18 +3,19 @@ import java.util.ArrayList;
 
 public class MasterShip extends Ship implements Observable {
 	public static MasterShip uniqueInstance;
-	public int score;
-	public ArrayList<EnemyShip> watchers = new ArrayList<EnemyShip>();
+	private int score;
+	private ArrayList<EnemyShip> watchers = new ArrayList<EnemyShip>();
 
 	//implementing singleton design pattern
-	private MasterShip(Grid grid, String name) {
-		super(grid, name);
+	private MasterShip(Grid grid) {
+		super(grid);
 		setScore(0);
 	}
 	
 	public static synchronized MasterShip getInstance(Grid grid, String name){
 		if(uniqueInstance == null){
-			uniqueInstance = new MasterShip(grid, name);
+			uniqueInstance = new MasterShip(grid);
+			uniqueInstance.setName(name);
 		}
 		return uniqueInstance;
 	}
@@ -31,9 +32,13 @@ public class MasterShip extends Ship implements Observable {
 
 	@Override
 	public void notifyObservers() {
-		for(EnemyShip s : this.watchers){
+		/*for(EnemyShip s : this.watchers){ //Yet to make subclass of enemy ship and observer.
 			s.update(this.getPosition());
-		}
+		}*/
+	}
+	
+	public void addPoints(int points){
+		this.score = this.score + points;
 	}
 
 	public int getScore() {

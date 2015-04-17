@@ -6,6 +6,7 @@ public class Game {
 	private Grid theGrid;
 	private int size;
 	private MasterShip player;
+	private String news;
 	private final Random random = new Random();
 	private HashSet<EnemyShip> allEnemys = new HashSet<EnemyShip>();
 	
@@ -13,13 +14,14 @@ public class Game {
 		setSize(4);
 		setTheGrid(new Grid());
 		this.theGrid.initializeGrid(this.size);
-		setPlayer(MasterShip.getInstance(this.theGrid, "master"));
+		setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
 		this.theGrid.put(0, 0, getPlayer());
 		//newEnemy("Bob");
 		//newEnemy("Al");
 	}
 	
 	public void go(Movement plrInput){
+		setNews(null);
 		this.player.move(plrInput);
 		moveEnemys();
 		checkPlrSquare();
@@ -35,14 +37,24 @@ public class Game {
 			System.out.println("Dave dead.");
 			break;
 		case 3: //game over
+			System.out.println("GAME OVER!");
 			break;
 		}
 	}
 	
 	public void killEnemy(){
 		Square position = this.player.getPosition();
-		position.getShips().clear();
+		EnemyShip enemy;
+		
+		position.removeShip(this.player);
+		enemy = (EnemyShip) position.getShips().iterator().next();
+		position.getShips().remove(enemy);
+		
+		this.player.addPoints(enemy.getPoints());
 		position.addShip(this.player);
+		System.out.println("Score now "+this.player.getScore());
+		
+		setNews("You just killed "+enemy.getName());
 	}
 	
 	public void moveEnemys(){
@@ -57,7 +69,8 @@ public class Game {
 	}
 	
 	public void newEnemy(String name){
-		EnemyShip grrr = new EnemyShip(this.theGrid, name);
+		BattleStar grrr = new BattleStar(this.theGrid);
+		grrr.setName(name);
 		this.allEnemys.add(grrr);
 		this.theGrid.put(0, 0, grrr);
 	}
@@ -65,7 +78,7 @@ public class Game {
 	public void probNewEnemy(){
 		int chance = random.nextInt(3);
 		switch(chance){
-		case 0: newEnemy("battleStar");
+		case 0: newEnemy("Dave");
 		break;
 		}
 	}
@@ -87,6 +100,14 @@ public class Game {
 	}
 	public void setPlayer(MasterShip player) {
 		this.player = player;
+	}
+
+	public String getNews() {
+		return this.news;
+	}
+
+	public void setNews(String news) {
+		this.news = news;
 	}
 
 }

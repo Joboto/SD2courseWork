@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
@@ -20,10 +21,15 @@ import javax.swing.JButton;
 
 public class Screen extends JFrame {
 	private Game newGame;
-	private JLayeredPane layeredPane;
 	private JSplitPane splitPane;
+	private JSplitPane subSplit;
 	private JPanel gridPane;
 	private JPanel buttonsPane;
+	private JPanel infoPane;
+	private JLabel titeLabel;
+	private JLabel nameLabel;	
+	private JLabel scoreLabel;
+	private JLabel eventLabel;
 	private ScreenSquare squares[][];
 	
 	public static void main(String[] args) {
@@ -41,21 +47,37 @@ public class Screen extends JFrame {
 
 	public Screen() {
 		newGame = new Game();
-		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+		int frameSize = newGame.getSize() * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 300, 400);
-				
-		splitPane.setLeftComponent(getGridPane(newGame.getSize()));
-		splitPane.setRightComponent(getButtonPane());
-		splitPane.setDividerLocation(250);
-		splitPane.setBackground(Color.BLACK);
+		setBounds(200, 200, frameSize, frameSize + 100);
 		
+		splitPane = getSplitPane();
 		setContentPane(splitPane);
 		setBackground(new Color(0, 0, 0));
 		
 	}//end Screen
+	
+	private JSplitPane getSplitPane(){
+		if(splitPane == null){
+			splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+			splitPane.setLeftComponent(getGridPane(newGame.getSize()));
+			splitPane.setRightComponent(getSubSplit());
+			//splitPane.setDividerLocation(250);
+			splitPane.setBackground(Color.BLACK);
+		}
+		return splitPane;
+	}
+	
+	private JSplitPane getSubSplit(){
+		if(subSplit == null){
+			subSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+			subSplit.setLeftComponent(getInfoPane());
+			subSplit.setRightComponent(getButtonPane());
+		}
+		return subSplit;
+	}
 		
-	private JPanel getGridPane(int size) {
+ 	private JPanel getGridPane(int size) {
 		if(gridPane == null){
 			gridPane = new JPanel();
 			gridPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,18 +88,67 @@ public class Screen extends JFrame {
 			for(int y = 0; y < size; y++){
 				for(int x = 0; x < size; x++){
 					squares[x][y] = new ScreenSquare(x, y, newGame.getTheGrid());
-					squares[x][y].setOpaque(false);
 					gridPane.add(squares[x][y]);
 				}
 			}//end for, creating grid
 		}
 		return gridPane;
 	}
+ 	
+ 	private JPanel getInfoPane(){
+		if(infoPane == null){
+			infoPane = new JPanel();
+			infoPane.setLayout(new GridLayout(5, 1));
+			infoPane.add(getTitleLabel());
+			infoPane.add(getNameLabel());
+			infoPane.add(getEventLabel());
+			infoPane.add(getScoreLabel());
+			updateInfo();
+		}
+		return infoPane;
+	}
+ 	
+ 	private JLabel getTitleLabel(){
+ 		if (titeLabel == null) {
+ 			titeLabel = new JLabel("****SKY WARS****");
+ 		}
+ 		return titeLabel;
+ 	}
+ 	
+ 	private JLabel getNameLabel(){
+ 		if (nameLabel == null){
+ 			nameLabel = new JLabel("Player: "+newGame.getPlayer().getName());
+ 		}
+ 		return nameLabel;
+ 	}
+	
+	private JLabel getScoreLabel() {
+		if (scoreLabel == null) {
+			scoreLabel = new JLabel("Score: "+this.newGame.getPlayer().getScore());
+			//scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			//scoreLabel.setFont(new Font("Papyrus", Font.PLAIN, 22));
+			scoreLabel.setBounds(10, 11, 199, 41);
+		}
+		return scoreLabel;
+	}
+	
+	private JLabel getEventLabel() {
+		if(eventLabel == null){
+			eventLabel = new JLabel();
+		}
+		return eventLabel;
+	}
+	
+	private void updateInfo(){
+		scoreLabel.setText("Score: "+this.newGame.getPlayer().getScore());
+		eventLabel.setText(this.newGame.getNews());
+	}
 	
 	private JPanel getButtonPane(){
 		if(buttonsPane == null){
 			buttonsPane = new JPanel();
 			buttonsPane.setLayout(new GridLayout(3, 3));
+			buttonsPane.setMaximumSize(new Dimension(100, 100));
 			for(Movement move : Movement.values()){
 				buttonsPane.add(getMoveButton(move));
 			}
@@ -90,21 +161,18 @@ public class Screen extends JFrame {
 		JButton button = new JButton(move.name());
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//here's the action; move the player
 				newGame.go(move);
-				/*after the movement, we then refresh. When movement is done at time intervals, 
-				this for loop will will have to be done elsewhere, in the game...
-				but not nessecarily*/ 
-				//lets include a random movement for the enemy, Bob
 				for(int y = 0; y < newGame.getSize(); y++){
 					for(int x = 0; x < newGame.getSize(); x++){
 						squares[x][y].update();
 					}
 				}
+				updateInfo();
 			}
 		});
 		//button.setSize(10, 10);
 		return button;
 	}
+	
 	
 }

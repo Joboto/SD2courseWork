@@ -1,21 +1,18 @@
 
-public class EnemyShip extends Ship implements Observer, DisplayElement {
+public class EnemyShip extends Ship {
+	private int points;
 
-	public EnemyShip(Grid grid, String name) {
-		super(grid, name);
+	public EnemyShip(Grid grid) {
+		super(grid);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-
+	public int getPoints() {
+		return this.points;
 	}
 
-	@Override
-	public void update(Square masterPosition) {
-		// TODO Auto-generated method stub
-
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 }

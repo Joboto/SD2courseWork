@@ -5,13 +5,16 @@ public class Demo {
 
 	public static void main(String[] args) {
 		Grid grid = new Grid();
-		EnemyShip enemy = new EnemyShip(grid, "foo");
+		EnemyShip enemy = new EnemyShip(grid);
 		MasterShip masterShip = MasterShip.getInstance(grid, "bar");
 		
-		System.out.println(masterShip.getClass());
-		System.out.println(enemy.getClass());
+		grid.initializeGrid(8);
+		grid.put(1, 1, masterShip);
+		grid.put(8, 8, enemy);
 		
-		
+		System.out.println(masterShip.getScore());
+		masterShip.addPoints(5);
+		System.out.println(masterShip.getScore());
 	}
 
 }
