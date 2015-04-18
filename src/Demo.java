@@ -4,8 +4,8 @@ import java.util.Random;
 public class Demo {
 
 	public static void main(String[] args) {
-		/*Grid grid = new Grid();
-		EnemyShip enemy = new EnemyShip(grid);
+		Grid grid = new Grid();
+		/*EnemyShip enemy = new EnemyShip(grid);
 		MasterShip masterShip = MasterShip.getInstance(grid, "bar");
 		
 		grid.initializeGrid(8);
@@ -17,14 +17,13 @@ public class Demo {
 		System.out.println(masterShip.getScore());*/
 		
 		
-		Square start = new Square(4, 4);
-		Square end = new Square(5, 5);
-		System.out.println(Movement.O.xChange()+" "+Movement.O.yChange());
-		Movement someMove = Movement.vector(start, end);
+		EnemyShip generic;
+		BattleCruiser cruise = new BattleCruiser(grid);
 		
-		System.out.println(someMove);
-		System.out.println(Movement.O.xChange()+" "+Movement.O.yChange());
-		//System.out.println(someMove.xChange()+""+someMove.yChange());
+		generic = cruise;
+		
+		System.out.println(generic.getClass());
+		System.out.println(BattleCruiser.class);
 		
 		
 	}

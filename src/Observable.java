@@ -1,6 +1,6 @@
 
 public interface Observable {
-	public void addObserver(BattleCruiser s);
-	public void removeObserver(BattleCruiser s);
+	public void addObserver(EnemyShip s);
+	public void removeObserver(EnemyShip s);
 	public void notifyObservers();
 }
