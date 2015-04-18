@@ -23,6 +23,8 @@ public class BattleCruiser extends EnemyShip implements Observer {
 		 * These move towards MasterShip current position.
 		 * (BattleShooters run away)
 		 * Therefore 'end' position is where MasterShip is, and start is this.position.
+		 * 
+		 * Add 'if' so if clustered, move randomly.
 		 */
 		Movement move = Movement.vector(this.getPosition(), this.masterPosition);
 		this.move(move);

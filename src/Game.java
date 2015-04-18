@@ -54,7 +54,7 @@ public class Game {
 		position.addShip(this.player);
 		System.out.println("Score now "+this.player.getScore());
 		
-		setNews("You just killed "+enemy.getName());
+		setNews(enemy.getName()+" destroyed!");
 	}
 	
 	public void moveEnemys(){

@@ -18,6 +18,8 @@ public class BattleShooter extends EnemyShip implements Observer {
 		 * These move away from MasterShip current position.
 		 * (BattleCruisers move towards)
 		 * Therefore 'end' position is this.position, and start is where MasterShip.
+		 * 
+		 * Was getting stuck in top left corner: now moves away from border if stuck top or left.
 		 */
 		if(getPosition().getY() < 1){
 			this.move(Movement.S);
