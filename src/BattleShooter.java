@@ -9,6 +9,7 @@ public class BattleShooter extends EnemyShip implements Observer {
 	public BattleShooter(Grid grid) {
 		super(grid);
 		setPoints(20);
+		setName("Battle Shooter");
 	}
 
 	@Override
@@ -18,8 +19,14 @@ public class BattleShooter extends EnemyShip implements Observer {
 		 * (BattleCruisers move towards)
 		 * Therefore 'end' position is this.position, and start is where MasterShip.
 		 */
-		Movement move = Movement.vector(this.masterPosition, this.getPosition());
-		this.move(move);
+		if(getPosition().getY() < 1){
+			this.move(Movement.S);
+		} else if (getPosition().getX() <1){
+			this.move(Movement.E);
+		} else {
+			Movement move = Movement.vector(this.masterPosition, this.getPosition());
+			this.move(move);
+		}
 	}
 
 	@Override
