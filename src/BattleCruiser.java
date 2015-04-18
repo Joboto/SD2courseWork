@@ -9,6 +9,7 @@ public class BattleCruiser extends EnemyShip implements Observer {
 	public BattleCruiser(Grid grid) {
 		super(grid);
 		setPoints(10);
+		setName("Battle Cruiser");
 	}
 
 	@Override // Maybe change return type to Square, then no need for masterPosition

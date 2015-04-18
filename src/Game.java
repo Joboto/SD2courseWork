@@ -63,18 +63,36 @@ public class Game {
 		}
 	}
 	
-	public void newEnemy(String name){
-		BattleCruiser grrr = new BattleCruiser(this.theGrid);
-		grrr.setName(name);
-		this.player.addObserver(grrr);
-		this.allEnemys.add(grrr);
-		this.theGrid.put(0, 0, grrr);
+	public void newBattleStar(){
+		BattleStar bs = new BattleStar(this.theGrid);
+		this.allEnemys.add(bs);
+		this.theGrid.put(0, 0, bs);
+	}
+	
+	public void newBattleCruiser(){
+		BattleCruiser bc = new BattleCruiser(this.theGrid);
+		this.player.addObserver(bc);
+		this.allEnemys.add(bc);
+		this.theGrid.put(0, 0, bc);
+	}
+
+	public void newBattleShooter(){
+		BattleShooter bs = new BattleShooter(this.theGrid);
+		this.player.addObserver(bs);
+		this.allEnemys.add(bs);
+		this.theGrid.put(0, 0, bs);
 	}
 	
 	public void probNewEnemy(){
-		int chance = random.nextInt(3);
+		int chance = random.nextInt(12);
 		switch(chance){
-		case 0: newEnemy("Dave");
+		case 0:
+		case 1:
+			newBattleStar();
+		case 2:
+			newBattleCruiser();
+		case 3:
+			newBattleShooter();
 		break;
 		}
 	}
