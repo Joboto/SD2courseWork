@@ -17,5 +17,21 @@ public enum Movement {
 	public int yChange(){
 		return y;
 	}
+	
+	public static Movement vector(Square start, Square end){
+		Movement output = Movement.O;
+		int xDiff = end.getX() - start.getX();
+		int yDiff = end.getY() - start.getY();
+		xDiff = (int) Math.signum(xDiff);
+		yDiff = (int) Math.signum(yDiff);
+		
+		for(Movement move : Movement.values()){
+			if(move.x == xDiff && move.y == yDiff){
+				output = move;
+				break;
+			}
+		}
+		return output;
+	}
 
 }

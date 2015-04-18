@@ -57,15 +57,15 @@ public class Game {
 	}
 	
 	public void moveEnemys(){
-		for(Ship ship : this.allEnemys){
-			randomMove(ship);
+		for(EnemyShip ship : this.allEnemys){
+			ship.characteristicMove();
 		}
 	}
 	
-	public void randomMove(Ship ship){
+	/*public void randomMove(Ship ship){
 		Movement randomMove = Movement.values()[random.nextInt(Movement.values().length)];
 		ship.move(randomMove);
-	}
+	}*/ // Method now in BattleStar
 	
 	public void newEnemy(String name){
 		BattleStar grrr = new BattleStar(this.theGrid);

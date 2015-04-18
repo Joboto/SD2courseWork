@@ -1,5 +1,5 @@
 
-public class EnemyShip extends Ship {
+public abstract class EnemyShip extends Ship implements CharacteristicMove {
 	private int points;
 
 	public EnemyShip(Grid grid) {
