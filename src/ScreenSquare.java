@@ -26,7 +26,20 @@ public class ScreenSquare extends JLabel {
 	
 	public void update(){
 		Square position = grid.whatsAt(x, y);
-		if(position.getShips().isEmpty()){
+		String path;
+		switch(position.getShips().size()){
+		case 0:
+			path = "bgSpc.PNG";
+			break;
+		case 1:
+			path = position.getShips().iterator().next().imagePath();
+			break;
+		default:
+			path = "Fleet.PNG";
+			break;
+				
+		}
+		/*if(position.getShips().isEmpty()){
 			this.setIcon(bg);
 		} else {
 			try {
@@ -37,7 +50,7 @@ public class ScreenSquare extends JLabel {
 			} catch (NullPointerException e){
 				System.out.println(e.toString());
 			}
-		}
-		//this.setIcon(image);
+		}*/
+		this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 	}
 }

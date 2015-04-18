@@ -20,6 +20,7 @@ public class Game {
 	
 	public void go(Movement plrInput){
 		setNews(null);
+		this.player.notifyObservers();
 		this.player.move(plrInput);
 		moveEnemys();
 		checkPlrSquare();
@@ -63,8 +64,9 @@ public class Game {
 	}
 	
 	public void newEnemy(String name){
-		BattleStar grrr = new BattleStar(this.theGrid);
+		BattleCruiser grrr = new BattleCruiser(this.theGrid);
 		grrr.setName(name);
+		this.player.addObserver(grrr);
 		this.allEnemys.add(grrr);
 		this.theGrid.put(0, 0, grrr);
 	}
