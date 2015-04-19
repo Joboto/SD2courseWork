@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import processing.core.PApplet;
+
 
 public class Screen extends JFrame {
 	private Game newGame;
@@ -48,9 +50,9 @@ public class Screen extends JFrame {
 
 	public Screen() {
 		newGame = new Game();
-		int frameSize = newGame.getSize() * 100;
+		int frameSize = newGame.getSize() * 50;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(50, 50, frameSize, frameSize + 50);
+		setBounds(50, 50, frameSize, frameSize + 200);
 		
 		setContentPane(getSplitPane());
 		setBackground(new Color(0, 0, 0));
@@ -60,9 +62,10 @@ public class Screen extends JFrame {
 	private JSplitPane getSplitPane(){
 		if(splitPane == null){
 			splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-			splitPane.setLeftComponent(getGridPane(newGame.getSize()));
+			//splitPane.setLeftComponent(getGridPane(newGame.getSize()));
+			splitPane.setLeftComponent(getGraphicsPane());
 			splitPane.setRightComponent(getSubSplit());
-			//splitPane.setDividerLocation(250);
+			splitPane.setDividerLocation((newGame.getSize() * 50));
 			splitPane.setBackground(Color.BLACK);
 		}
 		return splitPane;
@@ -77,7 +80,7 @@ public class Screen extends JFrame {
 		return subSplit;
 	}
 		
- 	private JPanel getGridPane(int size) {
+ 	/*private JPanel getGridPane(int size) {
 		if(gridPane == null){
 			gridPane = new JPanel();
 			gridPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,7 +96,15 @@ public class Screen extends JFrame {
 			}//end for, creating grid
 		}
 		return gridPane;
-	}
+	}*/
+ 	
+ 	private JPanel getGraphicsPane(){
+ 		if(graphicsPane == null){
+ 			graphicsPane = new JPanel();
+ 			graphicsPane.add(new GameGraph(newGame));
+ 		}
+ 		return graphicsPane;
+ 	}
  	
  	private JPanel getInfoPane(){
 		if(infoPane == null){
@@ -139,11 +150,6 @@ public class Screen extends JFrame {
 		return eventLabel;
 	}
 	
-	private void updateInfo(){
-		scoreLabel.setText("Score: "+this.newGame.getPlayer().getScore());
-		eventLabel.setText(this.newGame.getNews());
-	}
-	
 	private JPanel getButtonPane(){
 		if(buttonsPane == null){
 			buttonsPane = new JPanel();
@@ -162,17 +168,26 @@ public class Screen extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				newGame.go(move);
-				for(int y = 0; y < newGame.getSize(); y++){
+				/*for(int y = 0; y < newGame.getSize(); y++){
 					for(int x = 0; x < newGame.getSize(); x++){
 						squares[x][y].update();
 					}
-				}
+				}*/
 				updateInfo();
+				updateGraphics();
 			}
 		});
 		//button.setSize(10, 10);
 		return button;
 	}
 	
+	private void updateInfo(){
+		scoreLabel.setText("Score: "+this.newGame.getPlayer().getScore());
+		eventLabel.setText(this.newGame.getNews());
+	}
 	
+	private void updateGraphics(){
+		GameGraph sketch = (GameGraph) graphicsPane.getComponent(0);
+		sketch.loop();
+	}
 }

@@ -97,6 +97,10 @@ public class Game {
 		}
 	}
 	
+	public HashSet<EnemyShip> enemys() {
+		return this.allEnemys;
+	}
+	
 	public Grid getTheGrid() {
 		return this.theGrid;
 	}
