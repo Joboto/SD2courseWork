@@ -33,8 +33,7 @@ public class Screen extends JFrame {
 	private JLabel nameLabel;	
 	private JLabel scoreLabel;
 	private JLabel eventLabel;
-	private GameGraph graphs;
-	//private ScreenSquare squares[][];
+	private ScreenSquare squares[][];
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -102,23 +101,12 @@ public class Screen extends JFrame {
  	private JPanel getGraphicsPane(){
  		if(graphicsPane == null){
  			graphicsPane = new JPanel();
- 			graphicsPane.add(getGraphs());
+ 			graphicsPane.add(new GameGraph(newGame));
  		}
  		return graphicsPane;
  	}
  	
- 	private GameGraph getGraphs(){
- 		if(graphs == null){
- 			graphs = new GameGraph();
- 			graphs.scale = 50;
- 			graphs.g = newGame;
- 			graphs.size = newGame.getSize();
- 			graphs.init();
- 		}
- 		return graphs;
- 	}
- 	
-  	private JPanel getInfoPane(){
+ 	private JPanel getInfoPane(){
 		if(infoPane == null){
 			infoPane = new JPanel();
 			infoPane.setLayout(new GridLayout(5, 1));
@@ -199,6 +187,7 @@ public class Screen extends JFrame {
 	}
 	
 	private void updateGraphics(){
-		graphs.draw();
+		GameGraph sketch = (GameGraph) graphicsPane.getComponent(0);
+		sketch.loop();
 	}
 }
