@@ -24,6 +24,7 @@ public class Screen extends JFrame {
 	private JSplitPane splitPane;
 	private JSplitPane subSplit;
 	private JPanel gridPane;
+	private JPanel graphicsPane;
 	private JPanel buttonsPane;
 	private JPanel infoPane;
 	private JLabel titeLabel;
@@ -51,8 +52,7 @@ public class Screen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, frameSize, frameSize + 50);
 		
-		splitPane = getSplitPane();
-		setContentPane(splitPane);
+		setContentPane(getSplitPane());
 		setBackground(new Color(0, 0, 0));
 		
 	}//end Screen
