@@ -11,7 +11,8 @@ import javax.swing.JLabel;
 public class ScreenSquare extends JLabel {
 	int x, y;
 	Grid grid;
-	ImageIcon bg;
+	//ImageIcon bg;
+	BgSketch bg;
 	
 	public ScreenSquare(int gridX, int gridY, Grid gameGrid){
 		
@@ -20,8 +21,10 @@ public class ScreenSquare extends JLabel {
 		x = gridX;
 		y = gridY;
 		grid = gameGrid;
-		bg = new ImageIcon(this.getClass().getResource("bgSpc.PNG"));
-		update();
+		//bg = new ImageIcon(this.getClass().getResource("bgSpc.PNG"));
+		//update();
+		bg = new BgSketch();
+		bg.init();
 		}
 	
 	public void update(){
@@ -29,28 +32,21 @@ public class ScreenSquare extends JLabel {
 		String path;
 		switch(position.getShips().size()){
 		case 0:
-			path = "bgSpc.PNG";
+			this.add(bg);
+			bg.draw();
+			//path = "bgSpc.PNG";
 			break;
 		case 1:
 			path = position.getShips().iterator().next().imagePath();
+			this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 			break;
 		default:
 			path = "Fleet.PNG";
+			this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 			break;
 				
 		}
-		/*if(position.getShips().isEmpty()){
-			this.setIcon(bg);
-		} else {
-			try {
-				String path = position.getShips().iterator().next().imagePath();
-				this.setIcon(new ImageIcon(this.getClass().getResource(path)));
-				this.setHorizontalAlignment(JLabel.CENTER);
-				this.setVerticalAlignment(JLabel.CENTER);
-			} catch (NullPointerException e){
-				System.out.println(e.toString());
-			}
-		}*/
-		this.setIcon(new ImageIcon(this.getClass().getResource(path)));
+		
+		//this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 	}
 }
