@@ -39,18 +39,6 @@ public class ScreenSquare extends JLabel {
 			break;
 				
 		}
-		/*if(position.getShips().isEmpty()){
-			this.setIcon(bg);
-		} else {
-			try {
-				String path = position.getShips().iterator().next().imagePath();
-				this.setIcon(new ImageIcon(this.getClass().getResource(path)));
-				this.setHorizontalAlignment(JLabel.CENTER);
-				this.setVerticalAlignment(JLabel.CENTER);
-			} catch (NullPointerException e){
-				System.out.println(e.toString());
-			}
-		}*/
 		this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 	}
 }
