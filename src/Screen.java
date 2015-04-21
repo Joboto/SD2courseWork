@@ -108,8 +108,8 @@ public class Screen extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					newGame.restartGame();
-					splitPane.setLeftComponent(getGridPane(newGame.getSize()));
 					updateGrid();
+					splitPane.setLeftComponent(gridPane);
 				}
 			});
 		}
