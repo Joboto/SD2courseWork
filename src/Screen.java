@@ -3,20 +3,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.Menu;
-
-import javafx.scene.input.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.GridLayout;
@@ -25,12 +18,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import com.sun.glass.events.KeyEvent;
-
 
 public class Screen extends JFrame {
 	private Game newGame;
-	private JMenuBar menuBar;
 	private JSplitPane splitPane;
 	private JSplitPane subSplit;
 	private JPanel gridPane;
@@ -57,35 +47,6 @@ public class Screen extends JFrame {
 
 	public Screen() {
 		newGame = new Game();
-		initiateScreen();
-		//getMyMenuBar();
-		
-	}//end Screen
-	
-	private void getMyMenuBar(){
-		menuBar = new JMenuBar();
-		JMenu menu = new JMenu("Options");
-		menu.setMnemonic(KeyEvent.VK_A);
-		menu.getAccessibleContext().setAccessibleDescription("Options");
-		menuBar.add(menu);
-		setJMenuBar(menuBar);
-		JMenuItem menuItem = new JMenuItem("Restart");
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Menu clicked");
-				updateScreen(6);
-			}
-		});
-		menu.add(menuItem);
-	}
-	
-	private void initiateScreen(){
-		
-		updateScreen(4);
-	}
-	
-	private void updateScreen(int gridSize){
-		newGame.startGame(gridSize);
 		int frameSize = newGame.getSize() * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, frameSize, frameSize + 50);
@@ -93,9 +54,8 @@ public class Screen extends JFrame {
 		splitPane = getSplitPane();
 		setContentPane(splitPane);
 		setBackground(new Color(0, 0, 0));
-		updateInfo();
 		
-	}
+	}//end Screen
 	
 	private JSplitPane getSplitPane(){
 		if(splitPane == null){
