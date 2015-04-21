@@ -104,6 +104,14 @@ public class Screen extends JFrame {
 	private JMenuItem getRestartOption(){
 		if(restartOption == null){
 			restartOption = new JMenuItem("Restart");
+			restartOption.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					newGame.restartGame();
+					splitPane.setLeftComponent(getGridPane(newGame.getSize()));
+					updateGrid();
+				}
+			});
 		}
 		return restartOption;
 	}
@@ -223,21 +231,25 @@ public class Screen extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				newGame.go(move);
-				for(int y = 0; y < newGame.getSize(); y++){
-					for(int x = 0; x < newGame.getSize(); x++){
-						squares[x][y].update();
-					}
-				}
+				updateGrid();
 				updateInfo();
 			}
 		});
 		return button;
 	}
 	
+	private void updateGrid(){
+		for(int y = 0; y < newGame.getSize(); y++){
+			for(int x = 0; x < newGame.getSize(); x++){
+				squares[x][y].update();
+			}
+		}
+	}
+	
 	private void updateInfo(){
 		scoreLabel.setText("Score: "+this.newGame.getPlayer().getScore());
-		eventLabel.setText(this.newGame.getNews());
-		if(this.newGame.getNews() == "GAME OVER!"){
+		eventLabel.setText(newGame.getNews());
+		if(newGame.isGameOver()){
 			splitPane.setLeftComponent(new JLabel(new ImageIcon(this.getClass().getResource("gameover.jpg"))));
 		}
 	}
