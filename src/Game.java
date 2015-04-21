@@ -19,6 +19,7 @@ public class Game {
 	}
 	
 	public void go(Movement plrInput){
+		System.out.println("We're going "+plrInput.name());
 		setNews(null);
 		this.player.notifyObservers();
 		this.player.move(plrInput);

@@ -15,6 +15,7 @@ public class GameGraph extends PApplet{
 	
 	public void setup(){
 		size(size, size);
+		background(0);
 		master = new MasterGraphic(this, g.getPlayer(), scale);
 		noLoop();
 	}

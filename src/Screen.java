@@ -26,7 +26,8 @@ public class Screen extends JFrame {
 	private JSplitPane splitPane;
 	private JSplitPane subSplit;
 	private JPanel gridPane;
-	private JPanel graphicsPane;
+	//private JPanel graphicsPane; //gonna try as just GameGraph
+	private GameGraph graphicsPane;
 	private JPanel buttonsPane;
 	private JPanel infoPane;
 	private JLabel titeLabel;
@@ -55,7 +56,8 @@ public class Screen extends JFrame {
 		setBounds(50, 50, frameSize, frameSize + 200);
 		
 		setContentPane(getSplitPane());
-		setBackground(new Color(0, 0, 0));
+		graphicsPane.init();
+		//setBackground(new Color(0, 0, 0));
 		
 	}//end Screen
 	
@@ -98,10 +100,10 @@ public class Screen extends JFrame {
 		return gridPane;
 	}*/
  	
- 	private JPanel getGraphicsPane(){
+ 	private GameGraph getGraphicsPane(){
  		if(graphicsPane == null){
- 			graphicsPane = new JPanel();
- 			graphicsPane.add(new GameGraph(newGame));
+ 			graphicsPane = new GameGraph(newGame);
+ 			//graphicsPane.init();
  		}
  		return graphicsPane;
  	}
@@ -187,7 +189,6 @@ public class Screen extends JFrame {
 	}
 	
 	private void updateGraphics(){
-		GameGraph sketch = (GameGraph) graphicsPane.getComponent(0);
-		sketch.loop();
+		graphicsPane.draw();
 	}
 }
