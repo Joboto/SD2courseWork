@@ -33,11 +33,9 @@ public class Game {
 		switch(numOfShips){
 		case 1: break;
 		case 2: killEnemy();
-			System.out.println("Dave dead.");
 			break;
 		default: //ie 3 or more. game over
 			setNews("GAME OVER!");
-			System.out.println("GAME OVER!");
 			break;
 		}
 	}

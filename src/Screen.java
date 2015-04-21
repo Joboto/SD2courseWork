@@ -1,8 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
@@ -14,6 +18,10 @@ import javax.swing.JButton;
 
 public class Screen extends JFrame {
 	private StartScreen startScreen;
+	private JMenuBar jmb;
+	private JMenu menu;
+	private JMenuItem quitOption;
+	private JMenuItem restartOption;
 	private Game newGame;
 	private JSplitPane splitPane;
 	private JSplitPane subSplit;
@@ -59,6 +67,45 @@ public class Screen extends JFrame {
 		
 		setContentPane(getSplitPane());
 		setBackground(new Color(0, 0, 0));
+		
+		setJMenuBar(getJmb());
+	}
+	
+	private JMenuBar getJmb(){
+		if(jmb == null){
+			jmb = new JMenuBar();
+			jmb.add(getMenu());
+		}
+		return jmb;
+	}
+	
+	private JMenu getMenu(){
+		if(menu == null){
+			menu = new JMenu("Menu");
+			menu.add(getRestartOption());
+			menu.add(getQuitOption());
+		}
+		return menu;
+	}
+	
+	private JMenuItem getQuitOption(){
+		if(quitOption == null){
+			quitOption = new JMenuItem("Quit");
+			quitOption.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+		}
+		return quitOption;
+	}
+	
+	private JMenuItem getRestartOption(){
+		if(restartOption == null){
+			restartOption = new JMenuItem("Restart");
+		}
+		return restartOption;
 	}
 	
 	private StartScreen getStartScreen(){
@@ -158,11 +205,6 @@ public class Screen extends JFrame {
 		return eventLabel;
 	}
 	
-	private void updateInfo(){
-		scoreLabel.setText("Score: "+this.newGame.getPlayer().getScore());
-		eventLabel.setText(this.newGame.getNews());
-	}
-	
 	private JPanel getButtonPane(){
 		if(buttonsPane == null){
 			buttonsPane = new JPanel();
@@ -192,5 +234,13 @@ public class Screen extends JFrame {
 		return button;
 	}
 	
+	private void updateInfo(){
+		scoreLabel.setText("Score: "+this.newGame.getPlayer().getScore());
+		eventLabel.setText(this.newGame.getNews());
+		if(this.newGame.getNews() == "GAME OVER!"){
+			splitPane.setLeftComponent(new JLabel(new ImageIcon(this.getClass().getResource("gameover.jpg"))));
+		}
+	}
 	
+		
 }
