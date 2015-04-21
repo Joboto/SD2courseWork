@@ -49,6 +49,20 @@ public class Screen extends JFrame {
 
 	public Screen() {
 		
+		initiate();
+		
+		
+	}//end Screen
+	
+	private void initiate(){
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(50, 50, 400, 400);
+		
+		setContentPane(getStartScreen());
+		setBackground(new Color(0, 0, 0));
+	}
+	
+	public void startGame(){
 		newGame = new Game();
 		int frameSize = newGame.getSize() * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,14 +70,30 @@ public class Screen extends JFrame {
 		
 		setContentPane(getSplitPane());
 		setBackground(new Color(0, 0, 0));
-		add(getStartScreen());
-		startScreen.setVisible(true);
-		
-	}//end Screen
+	}
 	
 	private StartScreen getStartScreen(){
 		if(startScreen == null){
-			startScreen = new StartScreen();
+			startScreen = new StartScreen(this);
+			JButton startButton = new JButton("Start");
+			startButton.setBounds(100, 110, 100, 20);
+			startButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println("Button pressed");
+				}
+			});
+			startScreen.add(startButton);
+			/*button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					newGame.go(move);
+					for(int y = 0; y < newGame.getSize(); y++){
+						for(int x = 0; x < newGame.getSize(); x++){
+							squares[x][y].update();
+						}
+					}
+					updateInfo();
+				}
+			});*/
 		}
 		return startScreen;
 	}

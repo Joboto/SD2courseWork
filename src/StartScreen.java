@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 
 public class StartScreen extends JPanel {
+	private Screen parent;
 	private String playerName;
 	private int gridSize;
 	private boolean startClicked;	
@@ -19,9 +20,10 @@ public class StartScreen extends JPanel {
 	private JComboBox<Integer> sizeSelect;
 	private JLabel lblName;
 	private JTextField nameField;
-	private JButton startButton;
+	//private JButton startButton;
 
-	public StartScreen() {
+	public StartScreen(Screen theScreen) {
+		setParent(theScreen);
 		setStartClicked(false);
 		setSize(400, 400);
 		setLayout(null);
@@ -30,10 +32,10 @@ public class StartScreen extends JPanel {
 		add(getSizeSelect());
 		add(getLblName());
 		add(getNameField());
-		add(getStartButton());
+		//add(getStartButton());
 	}
 
-	public StartScreen(LayoutManager arg0) {
+	/*public StartScreen(LayoutManager arg0) {
 		super(arg0);
 		// TODO Auto-generated constructor stub
 	}
@@ -46,6 +48,14 @@ public class StartScreen extends JPanel {
 	public StartScreen(LayoutManager arg0, boolean arg1) {
 		super(arg0, arg1);
 		// TODO Auto-generated constructor stub
+	}*/
+
+	public Screen getParent() {
+		return parent;
+	}
+
+	public void setParent(Screen parent) {
+		this.parent = parent;
 	}
 
 	private JLabel getTitle() {
@@ -93,21 +103,19 @@ public class StartScreen extends JPanel {
 		return nameField;
 	}
 
-	private JButton getStartButton() {
+	/*private JButton getStartButton() {
+		System.out.println("getting start button");
 		if(startButton == null){
 			startButton = new JButton("Start");
 			startButton.setBounds(100, 110, 100, 20);
 			startButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					setPlayerName(nameField.getText());
-					setGridSize((int) sizeSelect.getSelectedItem());
-					setStartClicked(true);
-					System.out.println(getPlayerName()+" "+getGridSize()+" "+isStartClicked());
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("something");
 				}
 			});
 		}
 		return startButton;
-	}
+	}*/
 
 	public String getPlayerName() {
 		return this.playerName;
