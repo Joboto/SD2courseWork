@@ -9,8 +9,10 @@ public class Game {
 	private String news;
 	private final Random random = new Random();
 	private HashSet<EnemyShip> allEnemys = new HashSet<EnemyShip>();
+	private boolean gameOver;
 	
 	public Game(int size, String name){
+		setGameOver(false);
 		setSize(size);
 		setTheGrid(new Grid());
 		this.theGrid.initializeGrid(size);
@@ -18,13 +20,27 @@ public class Game {
 		this.theGrid.put(0, 0, getPlayer());
 	}
 	
+	public void restartGame(){
+		setTheGrid(null);
+		setPlayer(null);
+		this.allEnemys.clear();
+		
+		setGameOver(false);
+		setTheGrid(new Grid());
+		this.theGrid.initializeGrid(getSize());
+		setPlayer(MasterShip.getInstance(getTheGrid(), "New Game"));
+		getTheGrid().put(0, 0, getPlayer());
+	}
+	
 	public void go(Movement plrInput){
-		setNews(null);
-		this.player.notifyObservers();
-		this.player.move(plrInput);
-		moveEnemys();
-		checkPlrSquare();
-		probNewEnemy();
+		if(!isGameOver()){
+			setNews(null);
+			this.player.notifyObservers();
+			this.player.move(plrInput);
+			moveEnemys();
+			checkPlrSquare();
+			probNewEnemy();
+		}
 	}
 	
 	public void checkPlrSquare(){
@@ -36,6 +52,7 @@ public class Game {
 			break;
 		default: //ie 3 or more. game over
 			setNews("GAME OVER!");
+			setGameOver(true);
 			break;
 		}
 	}
@@ -120,6 +137,14 @@ public class Game {
 
 	public void setNews(String news) {
 		this.news = news;
+	}
+
+	public boolean isGameOver() {
+		return this.gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
 	}
 
 }
