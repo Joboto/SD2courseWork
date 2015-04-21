@@ -11,23 +11,9 @@ public class Game {
 	private HashSet<EnemyShip> allEnemys = new HashSet<EnemyShip>();
 	
 	public Game(){
-		//setSize(6);
-		//setTheGrid(new Grid());
-		//this.theGrid.initializeGrid(this.size);
-		//setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
-		//this.theGrid.put(0, 0, getPlayer());
-	}
-	
-	public void startGame(int size){
-		if(getPlayer() != null){
-			setPlayer(null);
-		}
-		if(!this.allEnemys.isEmpty()){
-			this.allEnemys.clear();
-		}
-		setSize(size);
+		setSize(6);
 		setTheGrid(new Grid());
-		getTheGrid().initializeGrid(size);
+		this.theGrid.initializeGrid(this.size);
 		setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
 		this.theGrid.put(0, 0, getPlayer());
 	}
