@@ -62,11 +62,11 @@ public class Screen extends JFrame {
 		setBackground(new Color(0, 0, 0));
 	}
 	
-	public void startGame(){
-		newGame = new Game();
-		int frameSize = newGame.getSize() * 100;
+	public void startGame(int gridSize, String name){
+		newGame = new Game(gridSize, name);
+		int frameSize = gridSize * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(50, 50, frameSize, frameSize + 50);
+		setBounds(50, 50, frameSize, frameSize + 150);
 		
 		setContentPane(getSplitPane());
 		setBackground(new Color(0, 0, 0));
@@ -74,26 +74,17 @@ public class Screen extends JFrame {
 	
 	private StartScreen getStartScreen(){
 		if(startScreen == null){
-			startScreen = new StartScreen(this);
+			startScreen = new StartScreen();
 			JButton startButton = new JButton("Start");
 			startButton.setBounds(100, 110, 100, 20);
 			startButton.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					System.out.println("Button pressed");
+					System.out.println(startScreen.playerName()+" "+startScreen.gridSize());
+					startGame(startScreen.gridSize(), startScreen.playerName());
 				}
 			});
 			startScreen.add(startButton);
-			/*button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					newGame.go(move);
-					for(int y = 0; y < newGame.getSize(); y++){
-						for(int x = 0; x < newGame.getSize(); x++){
-							squares[x][y].update();
-						}
-					}
-					updateInfo();
-				}
-			});*/
 		}
 		return startScreen;
 	}
@@ -103,7 +94,7 @@ public class Screen extends JFrame {
 			splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 			splitPane.setLeftComponent(getGridPane(newGame.getSize()));
 			splitPane.setRightComponent(getSubSplit());
-			//splitPane.setDividerLocation(250);
+			splitPane.setDividerLocation(newGame.getSize() * 100);
 			splitPane.setBackground(Color.BLACK);
 		}
 		return splitPane;
