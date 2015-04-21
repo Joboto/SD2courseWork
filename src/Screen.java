@@ -1,22 +1,14 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
 
@@ -48,10 +40,7 @@ public class Screen extends JFrame {
 	}
 
 	public Screen() {
-		
 		initiate();
-		
-		
 	}//end Screen
 	
 	private void initiate(){
@@ -80,7 +69,6 @@ public class Screen extends JFrame {
 			startButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					System.out.println(startScreen.playerName()+" "+startScreen.gridSize());
 					startGame(startScreen.gridSize(), startScreen.playerName());
 				}
 			});
@@ -105,6 +93,7 @@ public class Screen extends JFrame {
 			subSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 			subSplit.setLeftComponent(getInfoPane());
 			subSplit.setRightComponent(getButtonPane());
+			subSplit.setDividerLocation(newGame.getSize() * 50);
 		}
 		return subSplit;
 	}
@@ -157,8 +146,6 @@ public class Screen extends JFrame {
 	private JLabel getScoreLabel() {
 		if (scoreLabel == null) {
 			scoreLabel = new JLabel("Score: "+this.newGame.getPlayer().getScore());
-			//scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			//scoreLabel.setFont(new Font("Papyrus", Font.PLAIN, 22));
 			scoreLabel.setBounds(10, 11, 199, 41);
 		}
 		return scoreLabel;
@@ -202,7 +189,6 @@ public class Screen extends JFrame {
 				updateInfo();
 			}
 		});
-		//button.setSize(10, 10);
 		return button;
 	}
 	

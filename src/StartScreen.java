@@ -1,28 +1,17 @@
-import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 
 public class StartScreen extends JPanel {
-	//private String playerName;
-	//private int gridSize;
-	//private boolean startClicked;	
 	private JLabel title;
 	private JLabel lblSize;
 	private JComboBox<Integer> sizeSelect;
 	private JLabel lblName;
 	private JTextField nameField;
-	//private JButton startButton;
-
+	
 	public StartScreen() {
-		//setStartClicked(false);
 		setSize(400, 400);
 		setLayout(null);
 		add(getTitle());
@@ -30,25 +19,8 @@ public class StartScreen extends JPanel {
 		add(getSizeSelect());
 		add(getLblName());
 		add(getNameField());
-		//add(getStartButton());
 	}
 
-	/*public StartScreen(LayoutManager arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	public StartScreen(boolean arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	public StartScreen(LayoutManager arg0, boolean arg1) {
-		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
-	}*/
-
-	
 	private JLabel getTitle() {
 		if(title == null){
 			title = new JLabel();
@@ -101,29 +73,5 @@ public class StartScreen extends JPanel {
 	public int gridSize(){
 		return (int) sizeSelect.getSelectedItem();
 	}
-/*
-	public String getPlayerName() {
-		return this.playerName;
-	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
-
-	public int getGridSize() {
-		return this.gridSize;
-	}
-
-	public void setGridSize(int gridSize) {
-		this.gridSize = gridSize;
-	}
-
-	public boolean isStartClicked() {
-		return this.startClicked;
-	}
-
-	public void setStartClicked(boolean startClicked) {
-		this.startClicked = startClicked;
-	}
-*/
 }
