@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.GridLayout;
@@ -21,7 +20,6 @@ import javax.swing.JButton;
 
 
 public class Screen extends JFrame {
-	private StartScreen startScreen;
 	private Game newGame;
 	private JSplitPane splitPane;
 	private JSplitPane subSplit;
@@ -48,25 +46,16 @@ public class Screen extends JFrame {
 	}
 
 	public Screen() {
-		
 		newGame = new Game();
 		int frameSize = newGame.getSize() * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, frameSize, frameSize + 50);
 		
-		setContentPane(getSplitPane());
+		splitPane = getSplitPane();
+		setContentPane(splitPane);
 		setBackground(new Color(0, 0, 0));
-		add(getStartScreen());
-		startScreen.setVisible(true);
 		
 	}//end Screen
-	
-	private StartScreen getStartScreen(){
-		if(startScreen == null){
-			startScreen = new StartScreen();
-		}
-		return startScreen;
-	}
 	
 	private JSplitPane getSplitPane(){
 		if(splitPane == null){
