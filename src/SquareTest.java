@@ -1,9 +1,9 @@
 import junit.framework.TestCase;
 
 
-public class GridTest extends TestCase {
+public class SquareTest extends TestCase {
 
-	public void testInitializeGrid() {
+	public void testDescription() {
 		//Creating required objects and setting them up for testing.
 		
 		//Method being tested
@@ -11,7 +11,7 @@ public class GridTest extends TestCase {
 		//Check outcome; 
 	}
 
-	public void testWhatsAt() {
+	public void testAddShip() {
 		//Creating required objects and setting them up for testing.
 		
 		//Method being tested
@@ -19,7 +19,7 @@ public class GridTest extends TestCase {
 		//Check outcome; 
 	}
 
-	public void testPut() {
+	public void testRemoveShip() {
 		//Creating required objects and setting them up for testing.
 		
 		//Method being tested
@@ -27,13 +27,4 @@ public class GridTest extends TestCase {
 		//Check outcome; 
 	}
 
-	public void testClear() {
-		//Creating required objects and setting them up for testing.
-		
-		//Method being tested
-		
-		//Check outcome; 
-	}
-
-	
 }

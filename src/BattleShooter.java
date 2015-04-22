@@ -36,4 +36,8 @@ public class BattleShooter extends EnemyShip implements Observer {
 		this.masterPosition = masterPosition;
 	}
 
+	public Square getMasterPosition() {
+		return masterPosition;
+	}
+
 }

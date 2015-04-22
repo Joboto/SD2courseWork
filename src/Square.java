@@ -13,14 +13,6 @@ public class Square {
 		setY(y);
 	}
 	
-	public void printCoords(){
-		System.out.println(getCoords());
-	}
-	
-	public String getCoords(){
-		return "("+getX()+","+getY()+")";
-	}
-	
 	public String description(){
 		if(this.ships.isEmpty()){
 			return null;

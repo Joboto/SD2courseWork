@@ -16,18 +16,18 @@ public class Ship {
 		
 	}
 	
-	public Square leaveCurrentPos(){
+	private Square leaveCurrentPos(){
 		Square oldPosition = this.position;
 		this.position = null;
 		oldPosition.removeShip(this);
 		return oldPosition;
 	}
 
-	public void printCoords(){
+	/*public void printCoords(){
 		String output;
 		output = this.name+"'s coords: ("+this.position.getX()+","+this.position.getY()+")";
 		System.out.println(output);
-	}
+	}*/
 
 	public Square getPosition() {
 		return position;

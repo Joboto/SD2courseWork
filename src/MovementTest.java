@@ -1,9 +1,9 @@
 import junit.framework.TestCase;
 
 
-public class GridTest extends TestCase {
+public class MovementTest extends TestCase {
 
-	public void testInitializeGrid() {
+	public void testXChange() {
 		//Creating required objects and setting them up for testing.
 		
 		//Method being tested
@@ -11,7 +11,7 @@ public class GridTest extends TestCase {
 		//Check outcome; 
 	}
 
-	public void testWhatsAt() {
+	public void testYChange() {
 		//Creating required objects and setting them up for testing.
 		
 		//Method being tested
@@ -19,7 +19,7 @@ public class GridTest extends TestCase {
 		//Check outcome; 
 	}
 
-	public void testPut() {
+	public void testVector() {
 		//Creating required objects and setting them up for testing.
 		
 		//Method being tested
@@ -27,13 +27,4 @@ public class GridTest extends TestCase {
 		//Check outcome; 
 	}
 
-	public void testClear() {
-		//Creating required objects and setting them up for testing.
-		
-		//Method being tested
-		
-		//Check outcome; 
-	}
-
-	
 }
