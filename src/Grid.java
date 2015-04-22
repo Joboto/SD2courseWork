@@ -47,4 +47,8 @@ public class Grid {
 		this.size = size;
 	}
 
+	public Square[][] getGameGrid() {
+		return gameGrid;
+	}
+
 }

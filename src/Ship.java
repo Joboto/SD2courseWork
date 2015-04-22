@@ -1,5 +1,5 @@
 
-public class Ship {
+public abstract class Ship {
 	private Square position;
 	private String name;
 	private Grid gameGrid;

@@ -52,7 +52,7 @@ public class Game {
 		}
 	}
 	
-	public void killEnemy(){
+	private void killEnemy(){
 		Square position = this.player.getPosition();
 		EnemyShip enemy;
 		
@@ -67,7 +67,7 @@ public class Game {
 		setNews(enemy.getName()+" destroyed!");
 	}
 	
-	public void moveEnemys(){
+	private void moveEnemys(){
 		for(EnemyShip ship : this.allEnemys){
 			ship.characteristicMove();
 		}
@@ -132,6 +132,10 @@ public class Game {
 
 	public void setNews(String news) {
 		this.news = news;
+	}
+
+	public HashSet<EnemyShip> getAllEnemys() {
+		return this.allEnemys;
 	}
 
 	public boolean isGameOver() {

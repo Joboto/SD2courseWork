@@ -13,6 +13,7 @@ public class Square {
 		setY(y);
 	}
 	
+	//Used in development; this method now superseded by the imagePath method in Ship 
 	public String description(){
 		if(this.ships.isEmpty()){
 			return null;
