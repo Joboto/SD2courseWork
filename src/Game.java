@@ -20,16 +20,11 @@ public class Game {
 		this.theGrid.put(0, 0, getPlayer());
 	}
 	
-	public void restartGame(){
+	public void endGame(){
 		setTheGrid(null);
 		setPlayer(null);
 		this.allEnemys.clear();
 		
-		setGameOver(false);
-		setTheGrid(new Grid());
-		this.theGrid.initializeGrid(getSize());
-		setPlayer(MasterShip.getInstance(getTheGrid(), "New Game"));
-		getTheGrid().put(0, 0, getPlayer());
 	}
 	
 	public void go(Movement plrInput){

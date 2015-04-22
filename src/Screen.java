@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,10 +11,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.peer.ButtonPeer;
+
 import javax.swing.JButton;
+
+import sun.launcher.resources.launcher;
+
 
 
 public class Screen extends JFrame {
@@ -40,6 +47,7 @@ public class Screen extends JFrame {
 				try {
 					Screen frame = new Screen();
 					frame.setVisible(true);
+					frame.getClass().newInstance();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -107,9 +115,19 @@ public class Screen extends JFrame {
 			restartOption.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					newGame.restartGame();
-					updateGrid();
-					splitPane.setLeftComponent(gridPane);
+					startScreen = null;
+					eventLabel = null;
+					scoreLabel = null;
+					nameLabel = null;
+					infoPane = null;
+					squares = null;
+					buttonsPane = null;
+					gridPane = null;
+					subSplit = null;
+					splitPane = null;
+					newGame = null;
+					Runtime.getRuntime().gc();
+					initiate();
 				}
 			});
 		}
