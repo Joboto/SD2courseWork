@@ -39,6 +39,7 @@ public class ScreenSquare extends JLabel {
 			break;
 				
 		}
+		System.out.println(path);
 		this.setIcon(new ImageIcon(this.getClass().getResource(path)));
 	}
 }
