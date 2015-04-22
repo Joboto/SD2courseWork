@@ -1,3 +1,6 @@
+package interfaces;
+import ships.EnemyShip;
+
 
 public interface Observable {
 	public void addObserver(EnemyShip s);

@@ -1,3 +1,7 @@
+package ships;
+import grid.Grid;
+import interfaces.CharacteristicMove;
+
 
 public abstract class EnemyShip extends Ship implements CharacteristicMove {
 	private int points;

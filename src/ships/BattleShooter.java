@@ -1,3 +1,9 @@
+package ships;
+import grid.Grid;
+import grid.Movement;
+import grid.Square;
+import interfaces.Observer;
+
 
 public class BattleShooter extends EnemyShip implements Observer {
 	/**

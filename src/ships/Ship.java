@@ -1,3 +1,8 @@
+package ships;
+import grid.Grid;
+import grid.Movement;
+import grid.Square;
+
 
 public class Ship {
 	private Square position;

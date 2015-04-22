@@ -1,4 +1,7 @@
+package grid;
 import java.util.HashSet;
+
+import ships.Ship;
 
 public class Square {
 	private int x;

@@ -1,3 +1,7 @@
+package ships;
+import grid.Grid;
+import interfaces.Observable;
+
 import java.util.ArrayList;
 
 

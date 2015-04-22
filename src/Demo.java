@@ -1,4 +1,9 @@
+import grid.Grid;
+
 import java.util.Random;
+
+import ships.BattleCruiser;
+import ships.EnemyShip;
 
 
 public class Demo {

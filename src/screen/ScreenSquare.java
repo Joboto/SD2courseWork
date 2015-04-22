@@ -1,4 +1,10 @@
+package screen;
+import grid.Grid;
+import grid.Square;
+import images.*;
+
 import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -7,6 +13,7 @@ import javax.swing.JLabel;
 public class ScreenSquare extends JLabel {
 	int x, y;
 	Grid grid;
+	
 	
 	public ScreenSquare(int gridX, int gridY, Grid gameGrid){
 		
@@ -22,13 +29,13 @@ public class ScreenSquare extends JLabel {
 		String path;
 		switch(position.getShips().size()){
 		case 0:
-			path = "bgSpc.PNG";
+			path = "/images/bgSpc.PNG";
 			break;
 		case 1:
-			path = position.getShips().iterator().next().imagePath();
+			path = "/images/"+position.getShips().iterator().next().imagePath();
 			break;
 		default:
-			path = "Fleet.PNG";
+			path = "/images/Fleet.PNG";
 			break;
 				
 		}

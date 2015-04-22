@@ -1,5 +1,12 @@
+package grid;
 import java.util.HashSet;
 import java.util.Random;
+
+import ships.BattleCruiser;
+import ships.BattleShooter;
+import ships.BattleStar;
+import ships.EnemyShip;
+import ships.MasterShip;
 
 
 public class Game {

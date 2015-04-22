@@ -1,3 +1,7 @@
+package screen;
+import grid.Game;
+import grid.Movement;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -15,12 +19,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.peer.ButtonPeer;
 
 import javax.swing.JButton;
-
-import sun.launcher.resources.launcher;
-
 
 
 public class Screen extends JFrame {

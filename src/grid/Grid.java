@@ -1,3 +1,6 @@
+package grid;
+import ships.Ship;
+
 
 public class Grid {
 	private int size;
