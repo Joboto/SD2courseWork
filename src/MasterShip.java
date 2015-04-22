@@ -56,4 +56,8 @@ public class MasterShip extends Ship implements Observable {
 		this.score = score;
 	}
 
+	public ArrayList<EnemyShip> getWatchers() {
+		return watchers;
+	}
+
 }

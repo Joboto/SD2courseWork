@@ -29,6 +29,10 @@ public class BattleCruiser extends EnemyShip implements Observer {
 		Movement move = Movement.vector(this.getPosition(), this.masterPosition);
 		this.move(move);
 	}
+
+	public Square getMasterPosition() {
+		return masterPosition;
+	}
 	
 	
 

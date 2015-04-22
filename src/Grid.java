@@ -26,7 +26,7 @@ public class Grid {
 		this.gameGrid[x][y].addShip(ship);
 	}
 	
-	public int keepInBounds(int coord){
+	private int keepInBounds(int coord){
 		if(coord < 0){
 			coord = 0;
 		}
@@ -38,21 +38,6 @@ public class Grid {
 	
 	public void clear(int x, int y){
 		this.gameGrid[x][y].getShips().clear();
-	}
-	
-	public void print(){
-		String output = "";
-		for(int y = 0; y < this.size; y++){
-			for(int x = 0; x < this.size; x++){
-				if(this.gameGrid[x][y].description() != null){
-					output = output + this.gameGrid[x][y].description() + " ";
-				} else {
-					output = output + this.gameGrid[x][y].getCoords() + " ";
-				}
-			}
-			output = output + "\n";
-		}
-		System.out.println(output);
 	}
 	
 	public int getSize() {
