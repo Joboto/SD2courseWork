@@ -1,3 +1,5 @@
+package Ships;
+
 
 public class BattleShooter extends EnemyShip implements Observer {
 	/**
