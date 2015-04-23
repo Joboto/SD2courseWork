@@ -1,30 +1,17 @@
-import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 
 public class StartScreen extends JPanel {
-	private Screen parent;
-	private String playerName;
-	private int gridSize;
-	private boolean startClicked;	
 	private JLabel title;
 	private JLabel lblSize;
 	private JComboBox<Integer> sizeSelect;
 	private JLabel lblName;
 	private JTextField nameField;
-	//private JButton startButton;
-
-	public StartScreen(Screen theScreen) {
-		setParent(theScreen);
-		setStartClicked(false);
+	
+	public StartScreen() {
 		setSize(400, 400);
 		setLayout(null);
 		add(getTitle());
@@ -32,30 +19,6 @@ public class StartScreen extends JPanel {
 		add(getSizeSelect());
 		add(getLblName());
 		add(getNameField());
-		//add(getStartButton());
-	}
-
-	/*public StartScreen(LayoutManager arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	public StartScreen(boolean arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	public StartScreen(LayoutManager arg0, boolean arg1) {
-		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
-	}*/
-
-	public Screen getParent() {
-		return parent;
-	}
-
-	public void setParent(Screen parent) {
-		this.parent = parent;
 	}
 
 	private JLabel getTitle() {
@@ -103,42 +66,12 @@ public class StartScreen extends JPanel {
 		return nameField;
 	}
 
-	/*private JButton getStartButton() {
-		System.out.println("getting start button");
-		if(startButton == null){
-			startButton = new JButton("Start");
-			startButton.setBounds(100, 110, 100, 20);
-			startButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("something");
-				}
-			});
-		}
-		return startButton;
-	}*/
-
-	public String getPlayerName() {
-		return this.playerName;
+	public String playerName(){
+		return nameField.getText();
 	}
-
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
-
-	public int getGridSize() {
-		return this.gridSize;
-	}
-
-	public void setGridSize(int gridSize) {
-		this.gridSize = gridSize;
-	}
-
-	public boolean isStartClicked() {
-		return this.startClicked;
-	}
-
-	public void setStartClicked(boolean startClicked) {
-		this.startClicked = startClicked;
+	
+	public int gridSize(){
+		return (int) sizeSelect.getSelectedItem();
 	}
 
 }

@@ -10,11 +10,11 @@ public class Game {
 	private final Random random = new Random();
 	private HashSet<EnemyShip> allEnemys = new HashSet<EnemyShip>();
 	
-	public Game(){
-		setSize(6);
+	public Game(int size, String name){
+		setSize(size);
 		setTheGrid(new Grid());
-		this.theGrid.initializeGrid(this.size);
-		setPlayer(MasterShip.getInstance(this.theGrid, "Me"));
+		this.theGrid.initializeGrid(size);
+		setPlayer(MasterShip.getInstance(this.theGrid, name));
 		this.theGrid.put(0, 0, getPlayer());
 	}
 	

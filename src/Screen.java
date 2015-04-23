@@ -1,22 +1,14 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
 
@@ -48,10 +40,7 @@ public class Screen extends JFrame {
 	}
 
 	public Screen() {
-		
 		initiate();
-		
-		
 	}//end Screen
 	
 	private void initiate(){
@@ -62,11 +51,11 @@ public class Screen extends JFrame {
 		setBackground(new Color(0, 0, 0));
 	}
 	
-	public void startGame(){
-		newGame = new Game();
-		int frameSize = newGame.getSize() * 100;
+	public void startGame(int gridSize, String name){
+		newGame = new Game(gridSize, name);
+		int frameSize = gridSize * 100;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(50, 50, frameSize, frameSize + 50);
+		setBounds(50, 50, frameSize, frameSize + 150);
 		
 		setContentPane(getSplitPane());
 		setBackground(new Color(0, 0, 0));
@@ -74,26 +63,16 @@ public class Screen extends JFrame {
 	
 	private StartScreen getStartScreen(){
 		if(startScreen == null){
-			startScreen = new StartScreen(this);
+			startScreen = new StartScreen();
 			JButton startButton = new JButton("Start");
 			startButton.setBounds(100, 110, 100, 20);
 			startButton.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					System.out.println("Button pressed");
+					startGame(startScreen.gridSize(), startScreen.playerName());
 				}
 			});
 			startScreen.add(startButton);
-			/*button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					newGame.go(move);
-					for(int y = 0; y < newGame.getSize(); y++){
-						for(int x = 0; x < newGame.getSize(); x++){
-							squares[x][y].update();
-						}
-					}
-					updateInfo();
-				}
-			});*/
 		}
 		return startScreen;
 	}
@@ -103,7 +82,7 @@ public class Screen extends JFrame {
 			splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 			splitPane.setLeftComponent(getGridPane(newGame.getSize()));
 			splitPane.setRightComponent(getSubSplit());
-			//splitPane.setDividerLocation(250);
+			splitPane.setDividerLocation(newGame.getSize() * 100);
 			splitPane.setBackground(Color.BLACK);
 		}
 		return splitPane;
@@ -114,6 +93,7 @@ public class Screen extends JFrame {
 			subSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 			subSplit.setLeftComponent(getInfoPane());
 			subSplit.setRightComponent(getButtonPane());
+			subSplit.setDividerLocation(newGame.getSize() * 50);
 		}
 		return subSplit;
 	}
@@ -166,8 +146,6 @@ public class Screen extends JFrame {
 	private JLabel getScoreLabel() {
 		if (scoreLabel == null) {
 			scoreLabel = new JLabel("Score: "+this.newGame.getPlayer().getScore());
-			//scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			//scoreLabel.setFont(new Font("Papyrus", Font.PLAIN, 22));
 			scoreLabel.setBounds(10, 11, 199, 41);
 		}
 		return scoreLabel;
@@ -211,7 +189,6 @@ public class Screen extends JFrame {
 				updateInfo();
 			}
 		});
-		//button.setSize(10, 10);
 		return button;
 	}
 	
