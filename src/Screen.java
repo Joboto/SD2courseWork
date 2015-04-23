@@ -49,8 +49,8 @@ public class Screen extends JFrame {
 
 	public Screen() {
 		
-		//initiate();
-		startGame();
+		initiate();
+		
 		
 	}//end Screen
 	
