@@ -33,7 +33,7 @@ public class BattleCruiserTest extends TestCase {
 		g.put(1, 1, ms);
 		g.put(0, 0, bs);
 		ms.addObserver(bs);
-		bs.notify();
+		bs.update(ms.getPosition());
 		
 		//Method being tested
 		bs.characteristicMove();
@@ -78,7 +78,7 @@ public class BattleCruiserTest extends TestCase {
 		String actual = path;
 		String expected = "BattleCuiser.PNG";
 		
-		assertTrue(actual.equals(expected));
+		assertTrue(actual == expected);
 	}
 
 }

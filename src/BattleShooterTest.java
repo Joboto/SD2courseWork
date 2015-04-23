@@ -11,6 +11,7 @@ public class BattleShooterTest extends TestCase {
 		g.initializeGrid(5);
 		g.put(1, 1, bs);
 		g.put(2, 2, ms);
+		bs.update(ms.getPosition());
 		
 		//Method being tested
 		bs.characteristicMove();
